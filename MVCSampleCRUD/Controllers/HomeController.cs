@@ -44,6 +44,23 @@ namespace MVCSampleCRUD.Controllers
 
             return RedirectToAction("Index");
         }
+        public ActionResult Edit(int id)
+        {
+            var Employeeid = DB01.Datebase1.Where(m => m.fId == id).FirstOrDefault();
+            return View(Employeeid);
+        }
+        [HttpPost]
+        public ActionResult Edit(int fid, string fTitle, string fImage, DateTime fDate)
+        {
+            var Employeeid = DB01.Datebase1.Where(m => m.fId == fid).FirstOrDefault();
+
+            Employeeid.fTitle = fTitle;
+            Employeeid.fImage = fImage;
+            Employeeid.fDate = fDate;
+            DB01.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
