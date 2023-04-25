@@ -35,6 +35,15 @@ namespace MVCSampleCRUD.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Delete(int id)
+        {
+            var Employeeid = DB01.Datebase1.Where(m => m.fId == id).FirstOrDefault();
+            DB01.Datebase1.Remove(Employeeid);
+            DB01.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
